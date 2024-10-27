@@ -55,7 +55,7 @@ const Signup = () => {
       <div className="bg-gray-800 bg-opacity-80 backdrop-blur-md p-8 rounded-lg shadow-lg w-96 transition-all duration-300">
         <h2 className="text-2xl font-bold text-white mb-4">Sign Up</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        {success && <p class="text-green-500 mb-4">{success}</p>}
+        {success && <p className="text-green-500 mb-4">{success}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-300">Email</label>
