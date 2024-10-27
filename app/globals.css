@@ -1,21 +1,22 @@
+/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+h1 {
+  font-size: 2rem;
+  color: #333;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.container {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+/* Add in your globals.css or tailwind.css */
+.input {
+  @apply w-full p-2 mb-4 border border-gray-300 rounded-lg;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.button {
+  @apply w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition;
 }
