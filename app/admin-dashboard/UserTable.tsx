@@ -91,6 +91,7 @@ const UserTable: React.FC = () => {
     setIsEditing(true);
     setCurrentUserId(user.id);
     setShowModal(true);
+    closeViewModal(); // Close the view modal
   };
 
   const handleDeleteUser = (id: number) => {
@@ -136,6 +137,7 @@ const UserTable: React.FC = () => {
     setSelectedUser(user);
     setViewModal(true);
   };
+
   return (
     <div className="max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-md md:p-6">
       <h2 className="text-2xl font-semibold mb-4">User Management</h2>
@@ -265,73 +267,55 @@ const UserTable: React.FC = () => {
 
       {/* Add/Edit User Modal */}
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg p-6 w-96">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
             <h3 className="text-lg font-semibold mb-4">
               {isEditing ? "Edit User" : "Add User"}
             </h3>
             <form onSubmit={handleAddOrUpdateUser}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={newUser.name}
-                  onChange={handleInputChange}
-                  required
-                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring focus:ring-blue-500 text-black"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={newUser.email}
-                  onChange={handleInputChange}
-                  required
-                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring focus:ring-blue-500 text-black"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Contact Info
-                </label>
-                <input
-                  type="text"
-                  name="contactInfo"
-                  value={newUser.contactInfo}
-                  onChange={handleInputChange}
-                  required
-                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring focus:ring-blue-500 text-black"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Photo
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handlePhotoChange}
-                  className="border border-gray-300 rounded-md p-2 w-full text-black"
-                />
-              </div>
-              <div className="flex justify-between mt-4">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={newUser.name}
+                onChange={handleInputChange}
+                required
+                className="text-black  border border-gray-300 rounded-md p-2 mb-4 w-full"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={newUser.email}
+                onChange={handleInputChange}
+                required
+                className="text-black  border border-gray-300 rounded-md p-2 mb-4 w-full"
+              />
+              <input
+                type="text"
+                name="contactInfo"
+                placeholder="Contact Info"
+                value={newUser.contactInfo}
+                onChange={handleInputChange}
+                required
+                className=" text-black border border-gray-300 rounded-md p-2 mb-4 w-full"
+              />
+              <input
+                type="file"
+                onChange={handlePhotoChange}
+                className="mb-4"
+              />
+              <div className="flex justify-end">
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="bg-gray-300 text-black py-1 px-3 rounded-md"
+                  className="bg-gray-300 text-black py-1 px-3 rounded-md mr-2"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white py-1 px-3 rounded-md hover:bg-blue-600 transition duration-200"
+                  className="bg-blue-500 text-white py-1 px-3 rounded-md"
                 >
                   {isEditing ? "Update" : "Add"}
                 </button>
@@ -343,37 +327,35 @@ const UserTable: React.FC = () => {
 
       {/* View User Modal */}
       {viewModal && selectedUser && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg p-6 w-96">
+        <div className="text-black fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white text-black  p-6 rounded-lg shadow-lg w-full max-w-md">
             <h3 className="text-lg font-semibold mb-4">User Details</h3>
-            <img
-              src={selectedUser.photo || "path/to/placeholder-image.jpg"}
-              alt={`${selectedUser.name}'s profile`}
-            />
-
-            <p className="text-sm font-medium text-gray-700">
-              Name: {selectedUser.name}
-            </p>
-            <p className="text-sm font-medium text-gray-700">
-              Email: {selectedUser.email}
-            </p>
-            <p className="text-sm font-medium text-gray-700">
-              Contact Info: {selectedUser.contactInfo}
-            </p>
-            <div className="flex justify-between mt-4">
+            <div className="mb-4">
+              {selectedUser.photo ? (
+                <img
+                  src={selectedUser.photo}
+                  alt={selectedUser.name}
+                  className="w-24 h-24 rounded-full mx-auto mb-4"
+                />
+              ) : (
+                <div className=" w-24 h-24 rounded-full bg-gray-300 mx-auto mb-4"></div>
+              )}
+              <p>
+                <strong>Name:</strong> {selectedUser.name}
+              </p>
+              <p>
+                <strong>Email:</strong> {selectedUser.email}
+              </p>
+              <p>
+                <strong>Contact Info:</strong> {selectedUser.contactInfo}
+              </p>
+            </div>
+            <div className="flex justify-end">
               <button
-                type="button"
                 onClick={closeViewModal}
-                className="bg-gray-300 text-black py-1 px-3 rounded-md"
+                className=" bg-gray-300 text-black py-1 px-3 rounded-md"
               >
                 Close
-              </button>
-              <button
-                type="button"
-                onClick={() => handleEditUser(selectedUser)}
-                className="bg-blue-500 text-white py-1 px-3 rounded-md hover:bg-blue-600 transition duration-200"
-              >
-                Edit
               </button>
             </div>
           </div>
