@@ -34,9 +34,9 @@ const AdminDashboard: React.FC = () => {
       setCurrentUser(JSON.parse(storedUser));
     } else {
       const defaultUser: UserProfile = {
-        name: "Admin Name",
-        email: "admin@example.com",
-        contactInfo: "123-456-7890",
+        name: "Mihir Sen",
+        email: "mihir@me.com",
+        contactInfo: "8809909496",
         photo: "",
       };
       setCurrentUser(defaultUser);
