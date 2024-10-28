@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
 
     // Check for strict login credentials
-    if (formData.email === "admin@me" && formData.password === "12345") {
+    if (formData.email === "mihir@me.com" && formData.password === "Accept") {
       // If credentials are correct, navigate to the admin dashboard
       router.push("/admin-dashboard");
     } else {
@@ -67,7 +67,7 @@ const Login = () => {
             <br />
             <a>
               {" "}
-              use Email- admin@me <br /> password: 12345
+              Use email:mihir@me.com <br /> Password: Accept
             </a>
           </p>
         </form>
