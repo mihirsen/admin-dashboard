@@ -136,7 +136,6 @@ const UserTable: React.FC = () => {
     setSelectedUser(user);
     setViewModal(true);
   };
-
   return (
     <div className="max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-md md:p-6">
       <h2 className="text-2xl font-semibold mb-4">User Management</h2>
@@ -348,9 +347,10 @@ const UserTable: React.FC = () => {
           <div className="bg-white rounded-lg p-6 w-96">
             <h3 className="text-lg font-semibold mb-4">User Details</h3>
             <img
-              alt={selectedUser.name}
-              className="w-24 h-24 rounded-full mb-4 mx-auto"
+              src={selectedUser.photo || "path/to/placeholder-image.jpg"}
+              alt={`${selectedUser.name}'s profile`}
             />
+
             <p className="text-sm font-medium text-gray-700">
               Name: {selectedUser.name}
             </p>
